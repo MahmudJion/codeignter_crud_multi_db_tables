@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label>Author:</label>
                     <p><?php echo $posts[0]->author ?></p>
-                </div>     
+                </div>
             </div>
         </div>
     </div>

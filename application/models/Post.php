@@ -1,27 +1,27 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Post extends CI_Model{
-    
+
     function getRows($id = ""){
         if(!empty($id)){
-            $this->db->select("*"); 
+            $this->db->select("*");
             $this->db->from('post_db.posts');
             $this->db->join('post_db.posts_extra', 'posts_extra.id = posts.id');
-            $this->db->join('post_author.author', 'author.id = posts.id');    
-            $this->db->where('posts.id', $id);   
+            $this->db->join('post_author.author', 'author.id = posts.id');
+            $this->db->where('posts.id', $id);
             $query = $this->db->get();
             $all2= $query->result();
             return($all2);
         }else{
-            $this->db->select("*"); 
+            $this->db->select("*");
             $this->db->from('post_db.posts');
             $this->db->join('post_db.posts_extra', 'posts_extra.id = posts.id');
-            $this->db->join('post_author.author', 'author.id = posts.id');    
+            $this->db->join('post_author.author', 'author.id = posts.id');
             $query = $this->db->get();
             $all2= $query->result_array();
             return($all2);
        }
     }
-    
+
     public function insert($data = array()) {
 
         $db1 = array(
@@ -49,10 +49,10 @@ class Post extends CI_Model{
             return false;
         }
     }
-    
+
     public function update($data, $id) {
         if(!empty($data) && !empty($id)){
-            
+
         $db1 = array(
             'title'=>$data['title'],
             'content'=>$data['content'],
@@ -76,7 +76,7 @@ class Post extends CI_Model{
             return false;
         }
     }
-    
+
     public function delete($id){
         $delete = $this->db->delete('post_db.posts', array('id'=>$id));
         $delete = $this->db->delete('post_db.posts_extra', array('id'=>$id));
